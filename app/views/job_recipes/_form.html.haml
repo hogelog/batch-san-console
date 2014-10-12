@@ -1,0 +1,19 @@
+.clearfix
+  = form_for @job_recipe do |f|
+    .form-group
+      = f.label :name, "Job Name"
+      = f.text_field :name, placeholder: "Sample job", class: "form-control"
+    .form-group
+      = f.label :recipe, "Recipe"
+      = f.text_area :recipe, rows: 10, placeholder: "job: nop", class: "form-control"
+
+    - if @job_recipe.id
+      .form-group.clearfix
+        %p.pull-right
+          Created at #{@job_recipe.created_at},
+          Updated at #{@job_recipe.updated_at}
+      = f.submit "Update", class: "btn btn-default btn-lg pull-right"
+    - else
+      = f.submit "Create", class: "btn btn-default btn-lg pull-right"
+
+  = render "example_recipe"

@@ -1,0 +1,16 @@
+%h1.page-header Job Recipes
+
+.clearfix
+  = link_to "New recipe", new_job_recipe_path, class: "btn btn-default btn-lg pull-right"
+
+  %table.table.table-striped
+    %thead
+      %tr
+        %th #
+        %th Name
+    %tbody
+      - @job_recipes.each do |job_recipe|
+        %tr
+          %td= job_recipe.id
+          %td
+            = link_to job_recipe.name, job_recipe

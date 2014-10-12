@@ -1,0 +1,37 @@
+%h1.page-header= @job_recipe.name
+
+.clearfix
+  = form_for @job_recipe, url: {action: :launch}, method: :post do
+    = submit_tag "Launch", class: "btn btn-primary pull-right"
+
+%h2 Job Definition
+%pre= @job_recipe.recipe
+
+.clearfix
+  .pull-right
+    = link_to "Edit recipe", edit_job_recipe_path, role: "button", class: "btn btn-default"
+    = link_to "Delete recipe", @job_recipe, method: :delete, role: "button", class: "btn btn-danger", data: { confirm: "Delete this job?" }
+
+%h2 Job Logs
+%table.table.table-striped
+  %thead
+    %tr
+      %th #
+      %th Status
+      %th Start
+      %th Finish
+  %tbody
+    - @job_recipe_logs.each do |job_recipe_log|
+      %tr
+        %td= job_recipe_log.id
+        %td
+          - if job_recipe_log.progress?
+            %span.label.label-info Progress
+          - if job_recipe_log.success?
+            %span.label.label-success Success
+          - if job_recipe_log.failure?
+            %span.label.label-danger Failure
+        %td= job_recipe_log.created_at
+        %td
+          - unless job_recipe_log.progress?
+            = job_recipe_log.updated_at
