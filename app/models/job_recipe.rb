@@ -4,7 +4,7 @@ class JobRecipe < ActiveRecord::Base
   has_many :job_recipe_logs
 
   validates :name, presence: true
-  validates :job, presence: true
+  validates :recipe, presence: true
 
   def enqueue!
     JobQueue.enqueue! self
