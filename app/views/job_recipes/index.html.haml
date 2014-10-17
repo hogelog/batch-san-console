@@ -14,3 +14,17 @@
           %td= job_recipe.id
           %td
             = link_to job_recipe.name, job_recipe
+
+%h2 Working jobs
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Start
+    %tbody
+      - @working_job_logs.each do |working_job_log|
+        - job_recipe = working_job_log.job_recipe
+        - if job_recipe
+          %tr
+            %td= link_to job_recipe.name, job_recipe
+            %td= working_job_log.created_at

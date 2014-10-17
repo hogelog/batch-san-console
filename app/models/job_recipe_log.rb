@@ -10,6 +10,7 @@ class JobRecipeLog < ActiveRecord::Base
   belongs_to :job_recipe
 
   scope :recent, ->(count) { order("`id` DESC").limit(count) }
+  scope :progress, -> { where(status: STATUS::PROGRESS) }
 
   def progress?
     status == STATUS::PROGRESS

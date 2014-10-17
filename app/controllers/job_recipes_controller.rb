@@ -1,6 +1,7 @@
 class JobRecipesController < ApplicationController
   def index
     @job_recipes = JobRecipe.all
+    @working_job_logs = JobRecipeLog.progress
   end
 
   def show
