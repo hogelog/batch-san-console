@@ -2,7 +2,7 @@
 
 .clearfix
   = form_for @job_recipe, url: {action: :launch}, method: :post do
-    = submit_tag "Launch", class: "btn btn-primary pull-right"
+    = submit_tag "Launch", class: "btn btn-primary pull-right", data: { confirm: "Launch this job?" }
 
 %h2 Job Definition
 %pre= @job_recipe.recipe
